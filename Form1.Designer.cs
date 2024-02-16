@@ -44,6 +44,7 @@
             // 
             // trackRectangle
             // 
+            trackRectangle.Anchor = AnchorStyles.None;
             trackRectangle.LargeChange = 1;
             trackRectangle.Location = new Point(158, 237);
             trackRectangle.Name = "trackRectangle";
@@ -53,6 +54,7 @@
             // 
             // trackCircle
             // 
+            trackCircle.Anchor = AnchorStyles.None;
             trackCircle.LargeChange = 1;
             trackCircle.Location = new Point(568, 237);
             trackCircle.Name = "trackCircle";
@@ -62,7 +64,8 @@
             // 
             // trackSine
             // 
-            trackSine.Location = new Point(973, 237);
+            trackSine.Anchor = AnchorStyles.None;
+            trackSine.Location = new Point(970, 237);
             trackSine.Name = "trackSine";
             trackSine.Size = new Size(217, 56);
             trackSine.TabIndex = 2;
@@ -70,6 +73,7 @@
             // 
             // rectangle
             // 
+            rectangle.Anchor = AnchorStyles.None;
             rectangle.BackColor = SystemColors.HotTrack;
             rectangle.Location = new Point(211, 105);
             rectangle.Name = "rectangle";
@@ -79,6 +83,7 @@
             // 
             // circle
             // 
+            circle.Anchor = AnchorStyles.None;
             circle.BackColor = Color.DarkGray;
             circle.Location = new Point(568, 105);
             circle.Name = "circle";
@@ -88,8 +93,9 @@
             // 
             // sine
             // 
+            sine.Anchor = AnchorStyles.None;
             sine.BackColor = SystemColors.ControlDark;
-            sine.Location = new Point(976, 105);
+            sine.Location = new Point(973, 105);
             sine.Name = "sine";
             sine.Size = new Size(214, 120);
             sine.TabIndex = 5;
@@ -108,10 +114,9 @@
             Controls.Add(trackCircle);
             Controls.Add(trackRectangle);
             ForeColor = SystemColors.ControlDark;
-            MinimumSize = new Size(1190, 350);
+            MinimumSize = new Size(1190, 400);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)trackRectangle).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackCircle).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackSine).EndInit();

@@ -20,7 +20,7 @@ namespace lab1._1
             trackSine.MouseDown += TrackSine_MouseDown;
 
             DrawCircle(trackCircle.Value + defaultRadius);
-            DrawSine((trackSine.Maximum - trackSine.Value) * 2);
+            DrawSine(trackSine.Value);
 
             defaultHeight = rectangle.Height;
             defaultTop = rectangle.Top;
@@ -28,17 +28,17 @@ namespace lab1._1
 
         private void TrackRectangle_Scroll(object sender, EventArgs e)
         {
-            ÑhangeRectangleWidth(trackRectangle.Value);
+            changeRectangleWidth(trackRectangle.Value);
         }
 
         private void TrackRectangle_MouseDown(object sender, MouseEventArgs e)
         {
             int newPosition = trackRectangle.Minimum + (int)(((double)e.X / trackRectangle.Width) * (trackRectangle.Maximum - trackRectangle.Minimum));
             trackRectangle.Value = newPosition;
-            ÑhangeRectangleWidth(trackRectangle.Value);
+            changeRectangleWidth(trackRectangle.Value);
         }
 
-        private void ÑhangeRectangleWidth(int trackValue)
+        private void changeRectangleWidth(int trackValue)
         {
             int newHeight = defaultHeight + trackValue * 8;
             int newTop = defaultTop - (newHeight - defaultHeight) / 2;
@@ -78,45 +78,56 @@ namespace lab1._1
             circle.Image = bmp;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            circle.BackColor = this.BackColor;
-        }
 
         private void TrackSine_Scroll(object sender, EventArgs e)
         {
-            DrawSine((trackSine.Maximum - trackSine.Value) * 2);
+            DrawSine(trackSine.Value);
         }
 
-        private void DrawSine(double amplitude)
-        {
-            Bitmap bmp = new Bitmap(sine.Width, sine.Height);
 
+        private void DrawSine(int value)
+        {
+
+
+
+            Bitmap bmp = new Bitmap(sine.Width, sine.Height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
+                int sinPeriod = (value + 1) * 7;
                 g.Clear(BackColor);
-                sine.BackColor = this.BackColor;
-                int centerY = bmp.Height / 2;
-                int period = bmp.Width;
+                Pen greenPen = new Pen(Brushes.SteelBlue, 2);
+                double amplitude = (value + 1) * 2.5;
+                int xOffset = sine.Width / 2;
 
-                Pen pen = Pens.Blue;
+                int width = sine.Width;
+                int height = sine.Height;
 
-                for (int i = 0; i < period; i++)
+                Point[] points = new Point[sine.Width];
+                for (int i = 0; i < width; i++)
                 {
-                    double y = centerY + amplitude * Math.Sin(2 * Math.PI * 5 * i / period);
-                    bmp.SetPixel(i, (int)y, Color.Blue);
+                    double angle = (i - xOffset) * 2 * Math.PI / sinPeriod;
+                    int x = i;
+                    int y = (int)(amplitude * Math.Sin(angle));
+
+                    points[x] = new Point(x, sine.Height / 2 - y);
                 }
+
+                g.DrawLines(Pens.Red, points);
             }
 
             sine.Image = bmp;
         }
 
+
+
         private void TrackSine_MouseDown(object sender, MouseEventArgs e)
         {
             int newPosition = trackSine.Minimum + (int)(((double)e.X / trackSine.Width) * (trackSine.Maximum - trackSine.Minimum));
             trackSine.Value = newPosition;
-            DrawSine((trackSine.Maximum - trackSine.Value) * 2);
+            DrawSine(trackSine.Value);
         }
+
+
     }
 
 }
