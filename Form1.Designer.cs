@@ -66,9 +66,11 @@
             // 
             trackSine.Anchor = AnchorStyles.None;
             trackSine.Location = new Point(970, 237);
+            trackSine.Maximum = 50;
             trackSine.Name = "trackSine";
             trackSine.Size = new Size(217, 56);
             trackSine.TabIndex = 2;
+            trackSine.TickFrequency = 5;
             trackSine.Scroll += TrackSine_Scroll;
             // 
             // rectangle
@@ -116,7 +118,7 @@
             ForeColor = SystemColors.ControlDark;
             MinimumSize = new Size(1190, 400);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Sliders";
             ((System.ComponentModel.ISupportInitialize)trackRectangle).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackCircle).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackSine).EndInit();

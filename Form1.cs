@@ -93,16 +93,18 @@ namespace lab1._1
             Bitmap bmp = new Bitmap(sine.Width, sine.Height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                int sinPeriod = (value + 1) * 7;
-                g.Clear(BackColor);
+                SuspendLayout();
+                int sinPeriod = (value + 1) * 10;    
                 Pen greenPen = new Pen(Brushes.SteelBlue, 2);
-                double amplitude = (value + 1) * 2.5;
+                double amplitude = (value + 1);
                 int xOffset = sine.Width / 2;
 
                 int width = sine.Width;
                 int height = sine.Height;
 
                 Point[] points = new Point[sine.Width];
+
+
                 for (int i = 0; i < width; i++)
                 {
                     double angle = (i - xOffset) * 2 * Math.PI / sinPeriod;
@@ -113,6 +115,7 @@ namespace lab1._1
                 }
 
                 g.DrawLines(Pens.Red, points);
+                ResumeLayout();
             }
 
             sine.Image = bmp;
